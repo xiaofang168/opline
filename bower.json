@@ -1,0 +1,23 @@
+{
+  "name": "opline",
+  "description": "devops online",
+  "main": "bootstrap.js",
+  "authors": [
+    "hbxffj@163.com"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "scrum"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/assets/library",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

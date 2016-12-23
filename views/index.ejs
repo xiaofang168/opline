@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>real time</title>
+	<script src="/assets/library/jquery/dist/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/socket_controller.js"></script>
+	<script type="text/javascript">
+		var socketController = new SocketController(show);
+		socketController.tail('out.log')
+		function show(data){
+			$('#mid').prepend(data);
+			$('#mid').prepend("<br/>");
+		}
+	</script>
+</head>
+<body>
+hello
+<pre>
+	<div id="mid" style="overflow: scroll; width: 800px; height: 500px;"></div>
+</pre>
+<div id="fin">
+<br/><br/>
+</div>
+</body>
+</html>
