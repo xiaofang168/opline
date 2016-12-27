@@ -5,9 +5,11 @@
 	<script src="/assets/library/jquery/dist/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/js/socket_controller.js"></script>
+	<script src="/js/exec_model.js"></script>
+	<script src="/js/spawn_model.js"></script>
 	<script type="text/javascript">
 		var socketController = new SocketController(show);
-		socketController.tail('out.log')
+		socketController.spawn(new SpawnModel("tail",["-f","out.log"]));
 		function show(data){
 			$('#mid').prepend(data);
 			$('#mid').prepend("<br/>");

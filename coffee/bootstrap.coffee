@@ -16,14 +16,15 @@ app.use(express.static(__dirname + '/public'))
 app.use('/', indexRoute)
 
 io.on 'connection',(client)->
-	client.on 'message',(path) ->
-		console.log("gots a path: #{path}" )
-		tail_f(path, client);
+	client.on 'spawn',(msg) ->
+		console.log("spawn command:#{msg.command}; args:#{msg.args}")
+		proc = spawn("tail", msg.args)
+		proc.stdout.on 'data', (data) ->
+			client.emit("spawn",data.toString())
 
-tail_f = (file, client) ->
-	proc = spawn('tail', ['-f', file])
-	proc.stdout.on 'data', (data) ->
-		client.send(data.toString())
+	client.on 'exec', (msg) ->
+		console.log "exec: #{msg}"
+
 
 http.listen 8080, ->
 	console.log('listening on *:8080')
